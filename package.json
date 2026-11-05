@@ -1,6 +1,6 @@
 {
   "name": "dsh-futures-ribbon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH 插件：输入框上方的隐蔽式单行期货行情带，含自选、跳动箭头、TRIX 明细与左侧栏模式（数据来自新浪期货）",
   "keywords": [
     "dsh",

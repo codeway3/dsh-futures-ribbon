@@ -13,6 +13,15 @@ import { fileURLToPath } from 'node:url'
 
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const ROUTE = '/futures-ribbon/api'
+
+/** 版本号从 package.json 读取，避免与清单不一致。 */
+const VERSION = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(HERE, 'package.json'), 'utf8')).version || '0.0.0'
+  } catch {
+    return '0.0.0'
+  }
+})()
 const SINA_REFERER = 'https://finance.sina.com.cn/'
 const SINA_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36'
 const SNAPSHOT_TTL_MS = 3000
@@ -349,7 +358,7 @@ export function apply(ctx) {
     const op = url.searchParams.get('op') || 'health'
     try {
       if (op === 'health') {
-        respond(res, 200, { ok: true, op, catalog: catalog.length, version: '0.10.5' })
+        respond(res, 200, { ok: true, op, catalog: catalog.length, version: VERSION })
         return
       }
       if (op === 'catalog') {

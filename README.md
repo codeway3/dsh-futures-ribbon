@@ -7,7 +7,7 @@ DSH（DeepSeek Harness）插件：在输入框上方注入一条**极轻的单�
 
 单色设计（不用红绿）、格子等宽、逐个切换；**休市不显示、不拉取**，不打扰日常对话。
 
-- 版本：`0.1.0`
+- 版本：`0.1.1`
 - 依赖：DSH `0.2.1-rc.3` 及以上（桌面版或 Web 版均可）
 - 许可：[MIT](LICENSE)
 
@@ -42,7 +42,7 @@ CLI="/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh"
 
 ```bash
 curl -s "http://127.0.0.1:<GUI端口>/futures-ribbon/api?op=health"
-# {"ok":true,"op":"health","catalog":82,"version":"0.1.0"}
+# {"ok":true,"op":"health","catalog":82,"version":"0.1.1"}
 ```
 
 GUI 端口每次启动可能变化，以 DSH 启动时输出的 URL 为准。
