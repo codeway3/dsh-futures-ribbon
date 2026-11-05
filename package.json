@@ -1,0 +1,82 @@
+{
+  "name": "dsh-futures-ribbon",
+  "version": "0.1.0",
+  "description": "DSH 插件：输入框上方的隐蔽式单行期货行情带，含自选、跳动箭头、TRIX 明细与左侧栏模式（数据来自新浪期货）",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "futures",
+    "market",
+    "ribbon",
+    "期货",
+    "行情"
+  ],
+  "license": "MIT",
+  "author": "codeway3",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "data/catalog.json",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check index.js && node --check client.js && node scripts/check-contract-codes.mjs",
+    "smoke": "node scripts/render-smoke.cjs",
+    "smoke:landing": "FR_MODE=landing node scripts/render-smoke.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeway3/dsh-futures-ribbon.git"
+  },
+  "homepage": "https://github.com/codeway3/dsh-futures-ribbon#readme",
+  "bugs": {
+    "url": "https://github.com/codeway3/dsh-futures-ribbon/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.3": "compatible",
+        "0.2.1-rc.5": "compatible"
+      }
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-ui-conversation": "*",
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-client-ui-conversation": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  }
+}

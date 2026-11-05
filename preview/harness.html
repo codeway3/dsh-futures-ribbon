@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>行情带 · 真实组件验证台</title>
+<style>
+  :root {
+    --dsw-alias-label-primary:#1d2129; --dsw-alias-label-secondary:#4e5969; --dsw-alias-label-tertiary:#86909c;
+    --dsw-alias-label-quaternary:#c9cdd4; --dsw-alias-bg-l1:#fff; --dsw-alias-bg-l2:#f2f3f5;
+    --dsw-alias-border-l1:#e5e6eb; --dsw-alias-border-l2:#f0f1f3;
+    --dsw-alias-interactive-bg-hover:rgba(0,0,0,.04); --page:#fafafa;
+  }
+  .dark {
+    --dsw-alias-label-primary:#f2f3f5; --dsw-alias-label-secondary:#c9cdd4; --dsw-alias-label-tertiary:#86909c;
+    --dsw-alias-label-quaternary:#4e5969; --dsw-alias-bg-l1:#1f2126; --dsw-alias-bg-l2:#2a2d34;
+    --dsw-alias-border-l1:#33363d; --dsw-alias-border-l2:#2a2d34;
+    --dsw-alias-interactive-bg-hover:rgba(255,255,255,.06); --page:#14161a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"PingFang SC",sans-serif;background:var(--page)}
+  .zone{padding:20px 0 10px}
+  .zone h5{margin:0 0 8px 20px;font:500 11px/1.4 -apple-system;letter-spacing:.6px;color:#8a8a8a;text-transform:uppercase}
+  .composer{border:1px solid var(--dsw-alias-border-l1);border-radius:14px;background:var(--dsw-alias-bg-l1);
+    height:72px;margin:0 18px;display:flex;align-items:flex-end;padding:10px 14px;font-size:12px;
+    color:var(--dsw-alias-label-quaternary)}
+  .composer-box{width:720px;max-width:92vw;margin:0 auto;border:1px solid var(--dsw-alias-border-l1);
+    border-radius:14px;background:var(--dsw-alias-bg-l1);padding:10px 14px}
+  .composer-input{width:100%;height:46px;resize:none;border:0;outline:none;background:transparent;
+    font:12px -apple-system,"PingFang SC";color:var(--dsw-alias-label-secondary)}
+  .side-mock{width:250px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+  .side-mock-cost{border:1px solid var(--dsw-alias-border-l1);border-radius:9px;padding:8px 10px;
+    font-size:11px;color:var(--dsw-alias-label-quaternary);background:var(--dsw-alias-bg-l1)}
+  .settings-shell{width:720px;max-width:92vw;margin:0 auto;border:1px solid var(--dsw-alias-border-l1);
+    border-radius:12px;background:var(--dsw-alias-bg-l1);padding:14px 16px}
+  .ctl{margin:0 18px 10px;display:flex;gap:8px;align-items:center;font:12px -apple-system;color:#888}
+  .ctl button{font:12px -apple-system;padding:3px 9px;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="ctl" style="padding-top:14px">
+  <span>真实组件验证台（mock 数据）：</span>
+  <button id="btn-open">打开浮层</button>
+  <button id="btn-settings">打开设置</button>
+  <button id="btn-close">关闭浮层</button>
+  <button id="btn-loc">切换 dock/侧栏</button>
+  <label><input type="checkbox" id="chk-dark" checked> 深色</label>
+</div>
+
+<div class="zone dark" id="zone-dock" style="padding-top:430px">
+  <h5>Dock（输入框上方，居中）</h5>
+  <div id="dock-root"></div>
+  <div class="composer-box">
+    <textarea class="composer-input" rows="2" placeholder="给 DeepSeek Harness 发送消息…"></textarea>
+  </div>
+</div>
+
+<div class="zone dark" id="zone-overlay">
+  <h5>左侧栏底部面板（需 location=sidebar，order=-2 应排在消费额度上方）</h5>
+  <div class="side-mock">
+    <div id="side-root"></div>
+    <div class="side-mock-cost">今日消费 ¥2.31 · 1.9M tokens</div>
+  </div>
+</div>
+
+<div class="zone dark" id="zone-settings">
+  <h5>DSH 设置菜单 · 行情带（settings.section）</h5>
+  <div class="settings-shell"><div id="settings-root"></div></div>
+</div>
+
+<script>
+  try { Object.defineProperty(document, 'hidden', { configurable: true, get: () => false }) } catch (e) {}
+  window.__errors = []
+  window.addEventListener('error', (e) => { window.__errors.push(String((e && e.message) || e)) })
+  window.addEventListener('unhandledrejection', (e) => { window.__errors.push('rejection: ' + String((e && e.reason) || '')) })
+  const __cw = console.warn
+  console.warn = function () { window.__errors.push('WARN: ' + Array.prototype.join.call(arguments, ' ').slice(0, 300)); return __cw.apply(console, arguments) }
+  const __ce = console.error
+  console.error = function () { window.__errors.push(Array.prototype.join.call(arguments, ' ')); return __ce.apply(console, arguments) }
+</script>
+<script src="vendor/react.js"></script>
+<script src="vendor/react-dom.js"></script>
+<script>
+  /* 1) 先设定自选（10 个，含生猪），保证溢出 -> 触发滚动 */
+  localStorage.setItem('dsh-futures-ribbon.config.v1', JSON.stringify({
+    codes: ['RU0','IC0','LH2703','CF0','SR0','M0','P0','I0','JD0','CU0'],
+    interval: 5, location: 'dock', ribbonMax: 5, rotateSec: 4, hidden: false
+  }))
+
+  /* 2) 模块加载器桩 */
+  window.__ModuleLoader__ = { load(mod) { window.__mod = mod } }
+
+  /* 3) mock 数据 */
+  const QUOTES = {
+    RU0: { name:'天然橡胶连续', last:19405, prevSettle:19685, change:-280, pct:-1.42, open:19530, high:19610, low:19355, hold:144042, volume:247565, date:'2026-10-27' },
+    CF0: { name:'棉花连续', last:15310, prevSettle:15700, change:-390, pct:-2.48, open:15590, high:15610, low:15255, hold:649816, volume:98, date:'2026-10-27' },
+    SR0: { name:'白糖连续', last:5261, prevSettle:5350, change:-89, pct:-1.66, open:5297, high:5297, low:5236, hold:560944, volume:238, date:'2026-10-27' },
+    M0:  { name:'豆粕连续', last:3203, prevSettle:3244, change:-41, pct:-1.26, open:3216, high:3218, low:3175, hold:2144845, volume:1620, date:'2026-10-27' },
+    P0:  { name:'棕榈油连续', last:9312, prevSettle:9593, change:-281, pct:-2.93, open:9508, high:9538, low:9303, hold:589040, volume:43, date:'2026-10-27' },
+    I0:  { name:'铁矿石连续', last:661.5, prevSettle:670, change:-8.5, pct:-1.27, open:671, high:673.5, low:661, hold:635559, volume:237, date:'2026-10-27' },
+    JD0: { name:'鸡蛋连续', last:3263, prevSettle:3314, change:-51, pct:-1.54, open:3290, high:3290, low:3233, hold:279315, volume:52, date:'2026-10-27' },
+    CU0: { name:'铜连续', last:108800, prevSettle:108180, change:620, pct:0.57, open:108500, high:108940, low:108310, hold:193177, volume:110, date:'2026-10-27' },
+    AU0: { name:'黄金连续', last:864.34, prevSettle:861.88, change:2.46, pct:0.29, open:864.9, high:867.7, low:858.9, hold:193584, volume:77, date:'2026-10-27' },
+    LH0: { name:'生猪连续', last:9680, prevSettle:9730, change:-50, pct:-0.51, open:9690, high:9695, low:9680, hold:182156, volume:1779, date:'2026-10-27' },
+      IC0: { name:'中证500指数期货连续', last:6558, prevSettle:6407.6, change:150.4, pct:2.35, open:6475, high:6598, low:6460.2, hold:164018, volume:37484, date:'2026-10-28' },
+      LH2703: { name:'生猪2703', last:9765, prevSettle:9630, change:135, pct:1.40, open:9725, high:9800, low:9575, hold:138776, volume:37175, date:'2026-10-28' },
+  }
+  const bars = Array.from({ length: 60 }, (_, i) => ({ d: '10:' + String(i % 60).padStart(2, '0'), o: 19300 + i, h: 19310 + i, l: 19290 + i, c: 19300 + Math.round(Math.sin(i / 4) * 40) + i, v: 100 + i, p: 300 }))
+
+  window.__stubFetch = async (url) => {
+    const u = String(url)
+    if (u.indexOf('op=quotes') >= 0) {
+      const codes = decodeURIComponent((u.match(/codes=([^&]+)/) || [])[1] || '').split(',').filter(Boolean)
+      const jitter = (v) => (Number.isFinite(v) ? +(v * (1 + (Math.random() - 0.5) * 0.0016)).toFixed(3) : v)
+      const rows = codes.map((c) => {
+        const base = Object.assign({ code: c, stale: false }, QUOTES[c] || {})
+        if (!Number.isFinite(base.last)) return base
+        const last = jitter(base.last)
+        const prevSettle = base.prevSettle
+        return Object.assign({}, base, {
+          last: last,
+          change: prevSettle ? last - prevSettle : 0,
+          pct: prevSettle ? ((last - prevSettle) / prevSettle) * 100 : 0,
+        })
+      })
+      return { json: async () => ({ ok: true, op: 'quotes', at: Date.now(), session: { state: 'break', label: '小休' }, rows }) }
+    }
+    if (u.indexOf('op=kline') >= 0) {
+      return { json: async () => ({ ok: true, op: 'kline', bars, ma: { 5: 19350.2, 10: 19342.8, 20: 19330.1, 60: 19312.4 }, trend: 'down', trix: { period: 12, signalPeriod: 9, value: 0.0967, signal: 0.0622, prev: 0.088, dir: 'up' } }) }
+    }
+    if (u.indexOf('op=months') >= 0) {
+      const variety = (decodeURIComponent((u.match(/variety=([^&]+)/) || [])[1] || '')).toUpperCase()
+      const months = ['01', '03', '05', '07', '09'].map((mm) => ({ code: variety + '27' + mm, name: '生猪27' + mm, last: 9700 + Number(mm), pct: -0.5 }))
+      return { json: async () => ({ ok: true, op: 'months', variety, months }) }
+    }
+    if (u.indexOf('op=catalog') >= 0) {
+      return { json: async () => ({ ok: true, op: 'catalog', catalog: window.__catalog || [] }) }
+    }
+    return { json: async () => ({ ok: false }) }
+  }
+</script>
+
+<script>
+  /* 4) 载入真实 client.js，并拿到注册的组件 */
+  const boot = (catalog) => {
+    window.__catalog = catalog
+    window.__regs = []
+    const s = document.createElement('script')
+    s.src = '../client.js?v=' + Date.now()
+    s.onload = () => {
+      const React = window.React
+      const mod = window.__mod
+      const plugin = mod.factory((id) => { if (id === 'react') return React; throw new Error('unexpected ' + id) })
+      plugin.apply({
+        slots: { inject(name, cb) { cb() }, register(opts, Comp) { window.__regs.push({ opts, Comp }); return () => {} } },
+        effect(fn) { fn() },
+      })
+      const dock = window.__regs.find((r) => r.opts.name === 'conversation.input.dock')
+      window.__cfgAtBoot = localStorage.getItem('dsh-futures-ribbon.config.v1')
+      const overlay = window.__regs.find((r) => r.opts.name === 'sidebar.footer.action')
+      const params = new URLSearchParams(location.search)
+      if (params.get('only') !== 'overlay') {
+        ReactDOM.createRoot(document.getElementById('dock-root')).render(React.createElement(dock.Comp))
+      }
+      // 侧栏面板：常驻渲染，只有 location=sidebar 时才有内容；?loc=sidebar 用于验证台
+      const cfg0 = JSON.parse(localStorage.getItem('dsh-futures-ribbon.config.v1') || '{}')
+      const wantLoc = new URLSearchParams(location.search).get('loc')
+      if (wantLoc && wantLoc !== cfg0.location) {
+        localStorage.setItem('dsh-futures-ribbon.config.v1', JSON.stringify(Object.assign({}, cfg0, { location: wantLoc })))
+      }
+      if (overlay) ReactDOM.createRoot(document.getElementById('side-root')).render(React.createElement(overlay.Comp))
+      const settingsReg = window.__regs.find((r) => r.opts.name === 'settings.section')
+      if (settingsReg) ReactDOM.createRoot(document.getElementById('settings-root')).render(React.createElement(settingsReg.Comp))
+      window.__ready = true
+    }
+    document.body.appendChild(s)
+  }
+  fetch('../data/catalog.json')
+    .then((r) => r.json())
+    .then((catalog) => {
+      window.fetch = window.__stubFetch
+      boot(catalog)
+    })
+    .catch((e) => { window.__errors.push('catalog 载入失败: ' + e.message) })
+
+  /* 5) 控件 */
+  const click = (sel) => {
+    const el = document.querySelector(sel)
+    if (el) el.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    return !!el
+  }
+  document.getElementById('btn-open').onclick = () => click('.fr-cell')
+  document.getElementById('btn-close').onclick = () => click('.fr-pop .fr-btn:last-child')
+  document.getElementById('btn-settings').onclick = () => {
+    const btns = Array.from(document.querySelectorAll('.fr-pop .fr-btn'))
+    const b = btns.find((x) => x.textContent === '设置')
+    if (b) b.click()
+  }
+  document.getElementById('chk-dark').onchange = (e) => {
+    document.getElementById('zone-overlay').classList.toggle('dark', e.target.checked)
+    document.getElementById('btn-loc').onclick = () => {
+      const KEY = 'dsh-futures-ribbon.config.v1'
+      const cur = JSON.parse(localStorage.getItem(KEY) || '{}')
+      cur.location = cur.location === 'sidebar' ? 'dock' : 'sidebar'
+      localStorage.setItem(KEY, JSON.stringify(cur))
+      window.dispatchEvent(new StorageEvent('storage', { key: KEY }))
+      document.getElementById('btn-loc').textContent = cur.location === 'sidebar' ? '切回 dock' : '切到侧栏'
+    }
+    document.getElementById('zone-dock').classList.toggle('dark', e.target.checked)
+    document.body.style.background = e.target.checked ? '#14161a' : '#fafafa'
+  }
+  if (document.getElementById('chk-dark').checked) document.body.style.background = '#14161a'
+</script>
+</body>
+</html>

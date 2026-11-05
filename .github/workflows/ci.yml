@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 语法检查
+        run: |
+          node --check index.js
+          node --check client.js
+          node --check scripts/render-smoke.cjs
+
+      - name: 合约白名单用例
+        run: node scripts/check-contract-codes.mjs
+
+      - name: bundle 清单完整性
+        run: |
+          node -e '
+          const fs = require("fs")
+          const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
+          const fail = (m) => { console.error("✗ " + m); process.exit(1) }
+          if (!pkg.dsh || !pkg.dsh.bundle || !pkg.dsh.bundle.patch) fail("缺少 dsh.bundle.patch")
+          if (!pkg.dsh.client || pkg.dsh.client.platform !== "web") fail("缺少 dsh.client.platform")
+          const need = ["index.js", "client.js", pkg.dsh.bundle.patch, "data/catalog.json", "icon.svg", "README.md", "LICENSE"]
+          for (const f of need) if (!fs.existsSync(f)) fail("缺少文件 " + f)
+          const patch = fs.readFileSync(pkg.dsh.bundle.patch, "utf8")
+          if (patch.indexOf(pkg.name) < 0) fail("cordis.patch.yml 里的 name 与 package.json 不一致")
+          const client = fs.readFileSync("client.js", "utf8")
+          if (client.indexOf("id: \x27" + pkg.name + "\x27") < 0) fail("client.js 的模块 id 与包名不一致")
+          const cat = JSON.parse(fs.readFileSync("data/catalog.json", "utf8"))
+          if (!Array.isArray(cat) || cat.length < 50) fail("data/catalog.json 异常（应为主连目录数组）")
+          console.log("✓ bundle 清单完整，目录合约数 " + cat.length)
+          '

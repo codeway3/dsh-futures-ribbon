@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 开发用 vendored React（跑 preview/harness.html 前自行准备，见 README）
+preview/vendor/
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 临时文件与产物
+tmp/
+.dsh-artifacts/
+*.log
+npm-debug.log*
+pnpm-debug.log*

@@ -1,0 +1,576 @@
+[
+  {
+    "code": "A0",
+    "name": "豆一连续",
+    "label": "豆一",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "AD0",
+    "name": "铸造铝合金连续",
+    "label": "铸造铝合金",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "AG0",
+    "name": "白银连续",
+    "label": "白银",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "AL0",
+    "name": "铝连续",
+    "label": "铝",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "AO0",
+    "name": "氧化铝连续",
+    "label": "氧化铝",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "AP0",
+    "name": "苹果连续",
+    "label": "苹果",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "AU0",
+    "name": "黄金连续",
+    "label": "黄金",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "B0",
+    "name": "豆二连续",
+    "label": "豆二",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "BC0",
+    "name": "国际铜连续",
+    "label": "国际铜",
+    "exchange": "ine",
+    "exchangeLabel": "上能源"
+  },
+  {
+    "code": "BR0",
+    "name": "丁二烯橡胶连续",
+    "label": "丁二烯橡胶",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "BU0",
+    "name": "沥青连续",
+    "label": "沥青",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "BZ0",
+    "name": "纯苯连续",
+    "label": "纯苯",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "C0",
+    "name": "玉米连续",
+    "label": "玉米",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "CF0",
+    "name": "棉花连续",
+    "label": "棉花",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "CJ0",
+    "name": "红枣连续",
+    "label": "红枣",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "CS0",
+    "name": "淀粉连续",
+    "label": "淀粉",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "CU0",
+    "name": "铜连续",
+    "label": "铜",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "CY0",
+    "name": "棉纱连续",
+    "label": "棉纱",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "EB0",
+    "name": "苯乙烯连续",
+    "label": "苯乙烯",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "EC0",
+    "name": "集运指数欧线期货连续",
+    "label": "集运指数欧线期货",
+    "exchange": "ine",
+    "exchangeLabel": "上能源"
+  },
+  {
+    "code": "EG0",
+    "name": "乙二醇连续",
+    "label": "乙二醇",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "FB0",
+    "name": "纤维板连续",
+    "label": "纤维板",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "FG0",
+    "name": "玻璃连续",
+    "label": "玻璃",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "FU0",
+    "name": "燃料油连续",
+    "label": "燃料油",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "HC0",
+    "name": "热轧卷板连续",
+    "label": "热轧卷板",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "I0",
+    "name": "铁矿石连续",
+    "label": "铁矿石",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "IC0",
+    "name": "中证500指数期货连续",
+    "label": "中证500指数期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "IF0",
+    "name": "沪深300指数期货连续",
+    "label": "沪深300指数期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "IH0",
+    "name": "上证50指数期货连续",
+    "label": "上证50指数期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "IM0",
+    "name": "中证1000指数期货连续",
+    "label": "中证1000指数期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "J0",
+    "name": "焦炭连续",
+    "label": "焦炭",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "JD0",
+    "name": "鸡蛋连续",
+    "label": "鸡蛋",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "JM0",
+    "name": "焦煤连续",
+    "label": "焦煤",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "JR0",
+    "name": "粳稻连续",
+    "label": "粳稻",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "L0",
+    "name": "塑料连续",
+    "label": "塑料",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "LC0",
+    "name": "碳酸锂连续",
+    "label": "碳酸锂",
+    "exchange": "gfex",
+    "exchangeLabel": "广期所"
+  },
+  {
+    "code": "LG0",
+    "name": "原木连续",
+    "label": "原木",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "LH0",
+    "name": "生猪连续",
+    "label": "生猪",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "LR0",
+    "name": "晚籼稻连续",
+    "label": "晚籼稻",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "LU0",
+    "name": "低硫燃料油连续",
+    "label": "低硫燃料油",
+    "exchange": "ine",
+    "exchangeLabel": "上能源"
+  },
+  {
+    "code": "M0",
+    "name": "豆粕连续",
+    "label": "豆粕",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "MA0",
+    "name": "甲醇连续",
+    "label": "甲醇",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "NI0",
+    "name": "镍连续",
+    "label": "镍",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "NR0",
+    "name": "20号胶连续",
+    "label": "20号胶",
+    "exchange": "ine",
+    "exchangeLabel": "上能源"
+  },
+  {
+    "code": "OI0",
+    "name": "菜油连续",
+    "label": "菜油",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "OP0",
+    "name": "胶版印刷纸连续",
+    "label": "胶版印刷纸",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "P0",
+    "name": "棕榈油连续",
+    "label": "棕榈油",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "PB0",
+    "name": "铅连续",
+    "label": "铅",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "PD0",
+    "name": "钯连续",
+    "label": "钯",
+    "exchange": "gfex",
+    "exchangeLabel": "广期所"
+  },
+  {
+    "code": "PF0",
+    "name": "短纤连续",
+    "label": "短纤",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "PG0",
+    "name": "液化石油气连续",
+    "label": "液化石油气",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "PK0",
+    "name": "花生连续",
+    "label": "花生",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "PL0",
+    "name": "丙烯连续",
+    "label": "丙烯",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "PP0",
+    "name": "聚丙烯连续",
+    "label": "聚丙烯",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "PR0",
+    "name": "瓶片连续",
+    "label": "瓶片",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "PS0",
+    "name": "多晶硅连续",
+    "label": "多晶硅",
+    "exchange": "gfex",
+    "exchangeLabel": "广期所"
+  },
+  {
+    "code": "PT0",
+    "name": "铂连续",
+    "label": "铂",
+    "exchange": "gfex",
+    "exchangeLabel": "广期所"
+  },
+  {
+    "code": "PX0",
+    "name": "对二甲苯连续",
+    "label": "对二甲苯",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "RB0",
+    "name": "螺纹钢连续",
+    "label": "螺纹钢",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "RI0",
+    "name": "早籼稻连续",
+    "label": "早籼稻",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "RM0",
+    "name": "菜粕连续",
+    "label": "菜粕",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "RR0",
+    "name": "粳米连续",
+    "label": "粳米",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "RS0",
+    "name": "菜籽连续",
+    "label": "菜籽",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "RU0",
+    "name": "天然橡胶连续",
+    "label": "天然橡胶",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "SA0",
+    "name": "纯碱连续",
+    "label": "纯碱",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "SC0",
+    "name": "上海原油连续",
+    "label": "上海原油",
+    "exchange": "ine",
+    "exchangeLabel": "上能源"
+  },
+  {
+    "code": "SF0",
+    "name": "硅铁连续",
+    "label": "硅铁",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "SH0",
+    "name": "烧碱连续",
+    "label": "烧碱",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "SI0",
+    "name": "工业硅连续",
+    "label": "工业硅",
+    "exchange": "gfex",
+    "exchangeLabel": "广期所"
+  },
+  {
+    "code": "SM0",
+    "name": "锰硅连续",
+    "label": "锰硅",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "SN0",
+    "name": "锡连续",
+    "label": "锡",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "SP0",
+    "name": "纸浆连续",
+    "label": "纸浆",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "SR0",
+    "name": "白糖连续",
+    "label": "白糖",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "SS0",
+    "name": "不锈钢连续",
+    "label": "不锈钢",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  },
+  {
+    "code": "TA0",
+    "name": "PTA连续",
+    "label": "PTA",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "TF0",
+    "name": "5年期国债期货连续",
+    "label": "5年期国债期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "TS0",
+    "name": "2年期国债期货连续",
+    "label": "2年期国债期货",
+    "exchange": "cffex",
+    "exchangeLabel": "中金所"
+  },
+  {
+    "code": "UR0",
+    "name": "尿素连续",
+    "label": "尿素",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "V0",
+    "name": "PVC连续",
+    "label": "PVC",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "WH0",
+    "name": "强麦连续",
+    "label": "强麦",
+    "exchange": "czce",
+    "exchangeLabel": "郑商所"
+  },
+  {
+    "code": "Y0",
+    "name": "豆油连续",
+    "label": "豆油",
+    "exchange": "dce",
+    "exchangeLabel": "大商所"
+  },
+  {
+    "code": "ZN0",
+    "name": "沪锌连续",
+    "label": "沪锌",
+    "exchange": "shfe",
+    "exchangeLabel": "上期所"
+  }
+]

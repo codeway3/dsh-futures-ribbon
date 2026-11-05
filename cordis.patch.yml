@@ -1,0 +1,6 @@
+# 行情带（futures-ribbon）bundle 层
+# 插入一行宿主插件；渲染由 client.js 负责
+# （conversation.input.dock / sidebar.footer.action / settings.section）。
+- insert:
+    - id: futures-ribbon
+      name: 'dsh-futures-ribbon'
